@@ -23,8 +23,8 @@
                 <td>{{ book.published_date }}</td>
                 <td>{{ book.author.name }}</td>
                 <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    <a href="" class="btn btn-primary">Edit By Book</a>
+                    <a href="{% url 'book_delete' id=book.id%}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             {% empty %}

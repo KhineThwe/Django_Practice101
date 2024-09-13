@@ -56,8 +56,11 @@ def book_create(request):
     else:
         form = BookForm()
     return render(request,'book_form.html',{'form':form,'action':'Create'})
-    
-
+ 
+def book_delete(request,id):
+    Book.objects.get(id=id).delete()
+    return redirect('book_list')
+   
 def student_list(request):
     return render(request,'student_list.html')
 

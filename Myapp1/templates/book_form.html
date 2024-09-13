@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Books List
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Books Form</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="{{form.title.id_for_label}}" class="form-label">Title</label>
+          {% if form.title.value != null %}
+          <input type="text" name="title" class="form-control" id="{{form.title.id_for_label}}" value="{{ form.title.value }}">
+          {% else %}
+          <input type="text" name="title" class="form-control" id="{{form.title.id_for_label}}">
+          {% endif %}
+          {% if form.title.errors %}
+          <div class="form-text text-danger">
+            {% for error in form.title.errors%}
+                <p>{{error}}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          <label for="{{form.published_date.id_for_label}}" class="form-label">Published_Date</label>
+          {% if form.birthdate.value != null %}
+          <input type="date" class="form-control" name="published_date" id="{{form.published_date.id_for_label}}" value="{{ form.published_date.value|date:'Y-m-d' }}">
+          {% else %}
+          <input type="date" class="form-control" name="published_date" id="{{form.published_date.id_for_label}}">
+          {% endif %}
+          {% if form.published_date.errors %}
+          <div class="form-text text-danger">
+            {% for error in form.published_date.errors%}
+                <p>{{error}}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.author }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
-from .forms import AuthorForm
+from .forms import AuthorForm,BookForm
 from .models import Author,Book
 # Create your views here.
 
@@ -48,6 +48,13 @@ def book_list(request):
     return render(request,'book_list.html',context)
 
 def book_create(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)#takes as json type
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')
+    else:
+        form = BookForm()
     return render(request,'book_form.html',{'form':form,'action':'Create'})
     
 

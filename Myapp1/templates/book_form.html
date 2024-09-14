@@ -25,7 +25,7 @@
         </div>
         <div class="mb-3">
           <label for="{{form.published_date.id_for_label}}" class="form-label">Published_Date</label>
-          {% if form.birthdate.value != null %}
+          {% if form.published_date.value != null %}
           <input type="date" class="form-control" name="published_date" id="{{form.published_date.id_for_label}}" value="{{ form.published_date.value|date:'Y-m-d' }}">
           {% else %}
           <input type="date" class="form-control" name="published_date" id="{{form.published_date.id_for_label}}">
@@ -41,6 +41,6 @@
         <div class="mb-3">
           {{ form.author }}
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">{{action}}</button>
       </form>
 {% endblock %}

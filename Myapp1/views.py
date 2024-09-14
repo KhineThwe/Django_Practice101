@@ -56,6 +56,18 @@ def book_create(request):
     else:
         form = BookForm()
     return render(request,'book_form.html',{'form':form,'action':'Create'})
+
+def book_update(request,id):
+    if request.method == 'POST':
+        book = Book.objects.get(id=id)
+        form = BookForm(request.POST,instance=book)
+        if form.is_valid():
+            form.save()
+            return redirect('book_list')
+    else:
+        book = Book.objects.get(id=id)
+        form = BookForm(instance=book)
+    return render(request,'book_form.html',{'form':form,'action':'Update'})
  
 def book_delete(request,id):
     Book.objects.get(id=id).delete()
